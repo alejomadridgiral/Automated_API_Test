@@ -1,7 +1,9 @@
 package test;
 
 import io.restassured.response.Response;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pojo.BankDataPOJO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,26 +13,41 @@ import static io.restassured.RestAssured.given;
 public class InitializeBankAccountTest {
 
     @Test
-    public void postTest(){
-        String endpoint = "https://6192a21bd3ae6d0017da8217.mockapi.io/Users";
+    @Parameters({"endpoint"})
+    public void postTest(String endpoint){
 
-        Response response;
+        /**
+         * @Test2 > Initialize the POJO with 10 random data (Use the minimal Requirements). Also, make
+         * a code verification for avoiding duplicate email accounts. Then, perform the POST request.
+         *
+         * @autor Alejandro Madrid
+         */
 
-        Map<String, String> Users = new HashMap<String, String>();
-        Users.put("Name", "Jaramillo");
-        Users.put("LasName", "Apellido de Jaramillo");
-        Users.put("AccountNumber", "28471380");
-        Users.put("Amount", "681.49");
-        Users.put("TransactionType", "invoice");
-        Users.put("Email", "Lamar6@yahoo.com");
-        Users.put("Active", "false");
-        Users.put("Country", "Indonesia");
-        Users.put("Telephone", "(563) 449-1300 x50151");
+        BankDataPOJO fakerData = new BankDataPOJO();
 
-//      When
-        response = given().contentType("application/json").body(Users).when().post(endpoint);
+        for (int i = 1; i <= 10 ; i++) {
+            given().contentType("application/json").body(fakerData).when().post(endpoint);
+            System.out.println("Data created" + fakerData);
+        }
 
-//      Then
-        response.prettyPrint();
     }
 }
+
+//        Response response;
+//
+//        Map<String, String> Users = new HashMap<String, String>();
+//        Users.put("Name", "Jaramillo");
+//        Users.put("LasName", "Apellido de Jaramillo");
+//        Users.put("AccountNumber", "28471380");
+//        Users.put("Amount", "681.49");
+//        Users.put("TransactionType", "invoice");
+//        Users.put("Email", "Lamar6@yahoo.com");
+//        Users.put("Active", "false");
+//        Users.put("Country", "Indonesia");
+//        Users.put("Telephone", "(563) 449-1300 x50151");
+//
+////      When
+//        response = given().contentType("application/json").body(Users).when().post(endpoint);
+//
+////      Then
+//        response.prettyPrint();

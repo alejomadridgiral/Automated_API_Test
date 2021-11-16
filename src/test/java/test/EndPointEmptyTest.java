@@ -1,22 +1,17 @@
 package test;
 
-import apiFunctions.GetDelete;
 import io.restassured.response.Response;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import pojo.BankDataPOJO;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class EndPointEmptyTest {
 
     /**
-     * @Test 1 > Verify the Endpoint is empty (If it has any data use the DELETE request to clean and
+     * @Test1 > Verify the Endpoint is empty (If it has any data use the DELETE request to clean and
      * leave it empty)
      * @autor Alejandro Madrid
      */
@@ -24,10 +19,11 @@ public class EndPointEmptyTest {
     @Test
     @Parameters({"endpoint"})
     public void deleteTest(String endpoint) {
-   
+
+        Response responseGet = given().when().get(endpoint);
+
         BankDataPOJO[] endPointGet = given().when().get(endpoint).as(BankDataPOJO[].class);
         System.out.println("the endpoint length is: " + endPointGet.length);
-
 
         if (endPointGet.length != 0) {
             for (int i = 0; i < endPointGet.length; i++) {
@@ -36,6 +32,7 @@ public class EndPointEmptyTest {
             }
         } else {
             Assert.assertEquals(endPointGet.length, 0);
+            responseGet.then().assertThat().statusCode(200);
         }
     }
 }

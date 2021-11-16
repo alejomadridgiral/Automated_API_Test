@@ -1,5 +1,7 @@
 package pojo;
 
+import com.github.javafaker.Faker;
+
 public class BankDataPOJO {
 
     private String name;
@@ -13,7 +15,8 @@ public class BankDataPOJO {
     private String telephone;
     private String id;
 
-    public BankDataPOJO(){}
+
+//    public BankDataPOJO(){}
 
     public BankDataPOJO(String name, String lastName, String amount, String accountNumber, String transactionType, String email, String active, String country, String telephone, String id) {
         this.name = name;
@@ -26,6 +29,23 @@ public class BankDataPOJO {
         this.country = country;
         this.telephone = telephone;
         this.id = id;
+    }
+
+    public BankDataPOJO(){
+
+        Faker fake= new Faker();
+
+        this.name = fake.name().name();
+        this.lastName = fake.name().lastName();
+        this.amount = fake.numerify("1000");
+        this.accountNumber = fake.numerify("1000000");
+        this.transactionType = fake.finance().iban();
+        this.email = fake.internet().emailAddress();
+        this.active = fake.toString();
+        this.country = fake.country().name();
+        this.telephone = fake.phoneNumber().phoneNumber();
+        this.id = fake.idNumber().valid();
+
     }
 
     public String getName() {
