@@ -1,5 +1,6 @@
 package test;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -26,10 +27,16 @@ public class InitializeBankAccountTest {
         BankDataPOJO fakerData = new BankDataPOJO();
 
         for (int i = 1; i <= 10 ; i++) {
-            given().contentType("application/json").body(fakerData).when().post(endpoint);
-            System.out.println("Data created" + fakerData);
+
+            given().contentType(ContentType.JSON).body(fakerData).when().post(endpoint);
+
+            //            for (int j = 0; j < fakerData; j++) {
+
+//            }
         }
 
+        Response response = given().when().get(endpoint);
+        response.prettyPrint();
     }
 }
 

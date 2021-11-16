@@ -15,6 +15,8 @@ public class BankDataPOJO {
     private String telephone;
     private String id;
 
+    Faker fake= new Faker();
+
 
 //    public BankDataPOJO(){}
 
@@ -33,8 +35,6 @@ public class BankDataPOJO {
 
     public BankDataPOJO(){
 
-        Faker fake= new Faker();
-
         this.name = fake.name().name();
         this.lastName = fake.name().lastName();
         this.amount = fake.numerify("1000");
@@ -44,7 +44,7 @@ public class BankDataPOJO {
         this.active = fake.toString();
         this.country = fake.country().name();
         this.telephone = fake.phoneNumber().phoneNumber();
-        this.id = fake.idNumber().valid();
+        this.id = id;
 
     }
 
