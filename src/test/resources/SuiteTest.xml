@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<parameter name="endpoint" value="https://6192a21bd3ae6d0017da8217.mockapi.io/Users" />
+	<test thread-count="1" name="Test">
+		<classes>
+			<class name="test.EndPointEmptyTest"/>
+<!--			<class name="test.InitializeBankAccountTest"/>-->
+<!--			<class name="test.DoubleEmailTest"/>-->
+<!--			<class name="test.UpdateAccountNumberTest"/>-->
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

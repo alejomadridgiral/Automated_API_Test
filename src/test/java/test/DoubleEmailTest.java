@@ -8,6 +8,13 @@ import static io.restassured.RestAssured.given;
 
 public class DoubleEmailTest {
 
+    /**
+     *
+     *
+     *
+     *
+     */
+
     @Test
     public void getTest(){
         //given
@@ -24,13 +31,6 @@ public class DoubleEmailTest {
 //
 //        EmptyEndPoint[] emptyEndPoint = response.getBody().as(EmptyEndPoint[].class);
 //     System.out.println(emptyEndPoint);
-
-        BankDataPOJO[] emptyEndPoint = given().when().get(endpoint).as(BankDataPOJO[].class);
-        System.out.println(emptyEndPoint[0].getName());
-        Assert.assertEquals(emptyEndPoint[0].getName(), "Maria");
-
-
-
 
 
 //        EmptyEndPoint emptyEndPoint = response.getBody().as(EmptyEndPoint.class);

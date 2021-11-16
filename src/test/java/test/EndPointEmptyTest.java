@@ -1,6 +1,8 @@
 package test;
 
+import apiFunctions.GetDelete;
 import io.restassured.response.Response;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import pojo.BankDataPOJO;
@@ -13,23 +15,44 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class EndPointEmptyTest {
 
+    /**
+     * @Test 1 > Verify the Endpoint is empty (If it has any data use the DELETE request to clean and
+     * leave it empty)
+     * @autor Alejandro Madrid
+     */
+
     @Test
-    public void deleteTest(){
-        //given
-        String endpoint = "https://6192a21bd3ae6d0017da8217.mockapi.io/Users/7";
-        String endpoint1 = "https://6192a21bd3ae6d0017da8217.mockapi.io/Users";
+    @Parameters({"endpoint"})
+    public void deleteTest(String endpoint) {
+   
+        BankDataPOJO[] endPointGet = given().when().get(endpoint).as(BankDataPOJO[].class);
+        System.out.println("the endpoint length is: " + endPointGet.length);
 
-        System.out.println(endpoint1.isEmpty());
-        //when
-        Response response = given().when().delete(endpoint);
 
-        response.then().extract().response();
-
-        //then
-        response.prettyPrint();
-
-        response.then().assertThat().statusCode(404);
-
+        if (endPointGet.length != 0) {
+            for (int i = 0; i < endPointGet.length; i++) {
+                given().when().delete(endpoint + "/" + endPointGet[i].getId());
+                System.out.println("id " + endPointGet[i].getId() +" has been deleted: ");
+            }
+        } else {
+            Assert.assertEquals(endPointGet.length, 0);
+        }
     }
-
 }
+
+
+//        Assert.assertEquals(emptyEndPoint.length, 0);
+
+
+//        System.out.println(emptyEndPoint[0].getName());
+//        Assert.assertEquals(emptyEndPoint[0].getName(), "Maria");
+
+//        //when
+//        Response response = given().when().delete(endpoint);
+//
+//        response.then().extract().response();
+//
+//        //then
+//        response.prettyPrint();
+
+//        response.then().assertThat().statusCode(404);
