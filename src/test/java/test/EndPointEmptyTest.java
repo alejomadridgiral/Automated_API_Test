@@ -37,19 +37,3 @@ public class EndPointEmptyTest {
     }
 }
 
-
-//        Assert.assertEquals(emptyEndPoint.length, 0);
-
-
-//        System.out.println(emptyEndPoint[0].getName());
-//        Assert.assertEquals(emptyEndPoint[0].getName(), "Maria");
-
-//        //when
-//        Response response = given().when().delete(endpoint);
-//
-//        response.then().extract().response();
-//
-//        //then
-//        response.prettyPrint();
-
-//        response.then().assertThat().statusCode(404);
