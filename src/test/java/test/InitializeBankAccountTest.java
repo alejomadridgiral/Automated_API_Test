@@ -29,7 +29,7 @@ public class InitializeBankAccountTest {
          */
         BankDataPOJO fakeData = new BankDataPOJO();
 
-        for (int i = 1; i <= 10 ; i++) {
+        for (int i = 1; i <= 4 ; i++) {
 
             Response responsePost;
             responsePost = given().contentType(ContentType.JSON).body(fakeData).when().post(endpoint);
@@ -47,11 +47,11 @@ public class InitializeBankAccountTest {
 
         BankDataPOJO[] checkEmail = given().when().get(endpoint).as(BankDataPOJO[].class);
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 4; i++) {
             if(checkEmail[i].getEmail().equals(checkEmail[i-1].getEmail())){
                 System.out.println("there is a duplicate email account please change the email " + checkEmail[i].getEmail()+ " " + checkEmail[i-1].getEmail());
             } else {
-                System.out.println("the post is ok, please continue");
+                System.out.println("the post is ok to continue after checking the email");
             }
         }
 
