@@ -4,6 +4,8 @@ link to mockAPI
 
 https://mockapi.io/projects/6192a21bd3ae6d0017da8218
 
-the link is used a parameter for all the test so please run the tests from the suite.
+the link is used as a parameter for all the test so please run the tests from the suite individualy per class.
+
+
 
 
