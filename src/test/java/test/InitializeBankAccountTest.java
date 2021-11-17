@@ -24,21 +24,41 @@ public class InitializeBankAccountTest {
          * @autor Alejandro Madrid
          */
 
-        BankDataPOJO fakerData = new BankDataPOJO();
+        /**
+         * Step 1 create 10 ramdom data
+         */
+
 
         for (int i = 1; i <= 10 ; i++) {
-
-            given().contentType(ContentType.JSON).body(fakerData).when().post(endpoint);
-
-            //            for (int j = 0; j < fakerData; j++) {
-
-//            }
+            BankDataPOJO fakeData = new BankDataPOJO();
+            Response responsePost;
+            responsePost = given().contentType(ContentType.JSON).body(fakeData).when().post(endpoint);
+            responsePost.then().assertThat().statusCode(201);
         }
 
         Response response = given().when().get(endpoint);
         response.prettyPrint();
+
+        /**
+         *
+         * verification for avoiding duplicate email accounts
+         *
+         */
+
+        BankDataPOJO[] checkEmail = given().when().get(endpoint).as(BankDataPOJO[].class);
+
+        for (int i = 1; i < 10; i++) {
+            if(checkEmail[i].getEmail() == checkEmail[i-1].getEmail()){
+                System.out.println("there is a duplicate email account please change the email " + checkEmail[i].getEmail()+ " " + checkEmail[i-1].getEmail());
+            } else {
+                System.out.println("the post is ok, please continue");
+            }
+        }
+
     }
 }
+
+//    BankDataPOJO fakerData = new BankDataPOJO();
 
 //        Response response;
 //
@@ -58,3 +78,28 @@ public class InitializeBankAccountTest {
 //
 ////      Then
 //        response.prettyPrint();
+
+//        BankDataPOJO[] fakeData = given().when().get(endpoint).as(BankDataPOJO[].class);
+//
+////        for (int i = 1; i <= 10 ; i++) {
+////
+////            if(fakeData[i].getEmail() != fakeData[i-1].getEmail()){
+////                given().contentType(ContentType.JSON).body(fakeData[i]).when().post(endpoint);
+////            } else {
+////                System.out.println("Please check your email as it is duplicate");
+////            }
+////
+////
+////        }
+
+//
+//        public static BankDataPOJO checkEmail(){
+//            for (int i = 1; i <= 10 ; i++) {
+//
+//                if(fakerData.getEmail() != fakerData.getEmail())
+//                    given().contentType(ContentType.JSON).body(fakerData).when().post(endpoint);
+//
+//            }
+////
+//        }
+////
