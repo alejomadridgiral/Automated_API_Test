@@ -5,9 +5,9 @@
 	<test thread-count="1" name="Test">
 		<classes>
 <!--			<class name="test.EndPointEmptyTest"/>-->
-<!--			<class name="test.InitializeBankAccountTest"/>-->
+			<class name="test.InitializeBankAccountTest"/>
 <!--			<class name="test.DoubleEmailTest"/>-->
-			<class name="test.UpdateAccountNumberTest"/>
+<!--			<class name="test.UpdateAccountNumberTest"/>-->
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

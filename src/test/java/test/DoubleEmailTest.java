@@ -1,7 +1,6 @@
 package test;
 
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pojo.BankDataPOJO;
@@ -38,27 +37,3 @@ public class DoubleEmailTest {
     }
 
 }
-
-
-//given
-
-//when
-//        Response response = given().when().get(endpoint);
-//
-//        response.then().extract().response();
-//
-//       // response.prettyPrint();
-//
-//        //then
-//
-//        EmptyEndPoint[] emptyEndPoint = response.getBody().as(EmptyEndPoint[].class);
-//     System.out.println(emptyEndPoint);
-
-
-//        EmptyEndPoint emptyEndPoint = response.getBody().as(EmptyEndPoint.class);
-//        assertThat(emptyEndPoint.getId(), equalTo(id));
-
-
-//        response.prettyPrint();
-
-//        System.out.println(response.jsonPath().getString("Name"));
