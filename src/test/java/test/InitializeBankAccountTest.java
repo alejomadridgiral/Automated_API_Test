@@ -27,10 +27,10 @@ public class InitializeBankAccountTest {
         /**
          * Step 1 create 10 ramdom data
          */
-
+        BankDataPOJO fakeData = new BankDataPOJO();
 
         for (int i = 1; i <= 10 ; i++) {
-            BankDataPOJO fakeData = new BankDataPOJO();
+
             Response responsePost;
             responsePost = given().contentType(ContentType.JSON).body(fakeData).when().post(endpoint);
             responsePost.then().assertThat().statusCode(201);
@@ -48,7 +48,7 @@ public class InitializeBankAccountTest {
         BankDataPOJO[] checkEmail = given().when().get(endpoint).as(BankDataPOJO[].class);
 
         for (int i = 1; i < 10; i++) {
-            if(checkEmail[i].getEmail() == checkEmail[i-1].getEmail()){
+            if(checkEmail[i].getEmail().equals(checkEmail[i-1].getEmail())){
                 System.out.println("there is a duplicate email account please change the email " + checkEmail[i].getEmail()+ " " + checkEmail[i-1].getEmail());
             } else {
                 System.out.println("the post is ok, please continue");
